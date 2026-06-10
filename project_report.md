@@ -105,6 +105,7 @@ indistinguishable from real. Occlusion handling (FaceShifter-style) is the
 remaining known gap.
 
 ## References
+0. my own two encoder-decode papers: (https://onlinelibrary.wiley.com/doi/full/10.1002/rob.22141), (https://onlinelibrary.wiley.com/doi/full/10.1002/rob.22252)
 1. Pirogov and Artemev, Evaluating Deepfake Detectors in the Wild (https://arxiv.org/abs/2507.21905)
 2. Wang et al., DynamicFace: High-Quality and Consistent Video Face Swapping using Composable 3D Facial Priors (https://arxiv.org/html/2501.08553v1)
 3. SimSwap papaer and github repo: https://github.com/neuralchen/simswap
