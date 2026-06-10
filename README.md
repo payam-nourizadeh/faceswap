@@ -21,6 +21,8 @@ media of real people without their consent.
 
 ## Setup
 
+First please download the required models from (https://drive.google.com/file/d/16ulY54H9720JQAnvlW6Xs3R2PSIJBxsi/view?usp=drive_link), unzip and paste them in the repo parent folder.
+
 ```bash
 conda env create -f environment.yml
 conda activate faceswap
