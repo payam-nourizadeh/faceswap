@@ -1,0 +1,66 @@
+# Central configuration: device, paths, and hyperparameters.
+# device: auto resolves cuda, mps, cpu
+
+run:
+  seed: 42
+  device: auto
+  output_dir: runs/exp001
+
+data:
+  lfw_root: data/lfw_funneled          # extracted LFW deep-funneled images
+  aligned_root: data/aligned
+  manifest: data/manifest.json
+  image_size: 256
+  quality:
+    min_det_score: 0.20
+    min_blur: 8.0
+    min_interocular: 15.0
+    min_frontality: 0.35
+
+model:
+  id_embed_dim: 512                    # ArcFace embedding dimension
+  generator_channels: 64
+  num_id_blocks: 9                     # AdaIN residual blocks in the bottleneck
+  num_scales: 3                        # encoder downsamples / decoder upsamples
+  id_encoder:
+    backbone: r50
+    # Pretrained ArcFace r50 weights (insightface arcface_torch).
+    # null = randomly initialised; identity loss is meaningless (test only).
+    weights: eval_weights/arcface_r50/backbone.pth
+  discriminator:
+    base_channels: 64
+    n_layers: 4
+    num_scales: 3
+
+train:
+  batch_size: 4            # 256px on 12 GB with AMP; drop to 2 if OOM
+  num_workers: 0
+  use_amp: true            # CUDA only; see utils/device.py
+  lr_g: 0.0004
+  lr_d: 0.0004
+  total_steps: 100000
+  loss_weights:
+    identity: 20.0
+    reconstruction: 10.0
+    adversarial: 1.0
+    feature_matching: 8.0
+  weak_feature_matching: true   # match only deep D features (SimSwap)
+  weak_fm_layers: 2
+  same_id_prob: 0.1        # fraction of batches using same-identity pairs
+  log_every: 100
+  checkpoint_every: 5000
+
+eval:
+  # Must differ from model.id_encoder.backbone -- scoring with the training
+  id_eval_backbone: r100
+  id_eval_weights: eval_weights/arcface_r100/backbone.pth
+  reference_model: inswapper_128
+  far_target: 0.01
+  strengths: [0.0, 0.25, 0.4, 0.5, 0.6, 0.7, 0.8, 1.0]  # Pareto sweep
+
+video:
+  det_size: 640
+  working_size: 128        # smaller crop for real-time throughput
+  detect_every: 5          # re-detect every N frames; track in between
+  smoothing_alpha: 0.5     # EMA landmark smoothing factor
+

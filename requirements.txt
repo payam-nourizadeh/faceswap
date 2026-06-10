@@ -1,0 +1,28 @@
+# Core scientific stack
+numpy>=1.24
+opencv-python>=4.8
+pillow>=10.0
+scipy>=1.11
+
+# torch>=2.2
+# torchvision>=0.17
+
+# Face detection / alignment / identity embeddings
+insightface>=0.7.3
+onnxruntime>=1.16            # use onnxruntime-silicon on Apple, onnxruntime-gpu on CUDA
+
+# Config, metrics, plotting
+pyyaml>=6.0
+matplotlib>=3.7
+pytorch-fid>=0.3.0          # FID for realism evaluation
+lpips>=0.1.4                # perceptual distance (optional realism metric)
+
+# Serving + CLI
+fastapi>=0.110
+uvicorn>=0.27
+python-multipart>=0.0.9     # file uploads for the API
+typer>=0.9                  # CLI
+
+# Dev
+pytest>=7.4
+ruff>=0.3

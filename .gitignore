@@ -1,0 +1,56 @@
+# Mac
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env
+
+# Conda (don't commit the env itself, just environment.yml)
+.conda/
+
+# Data -- large, machine-specific, reproducible from scripts
+*.csv
+
+# OS
+.DS_Store
+.DS_Store?
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Editors
+.idea/
+.vscode/settings.json
+.vscode/launch.json
+*.swp
+*.swo
+*~
+
+# pytest / coverage
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ruff / mypy
+.ruff_cache/
+.mypy_cache/
+
+# Misc
+*.log
+*.tmp
+*.bak

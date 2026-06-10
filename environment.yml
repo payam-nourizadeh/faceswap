@@ -1,0 +1,23 @@
+name: faceswap
+# Conda environment for the faceswap project.
+#
+# Usage:
+#   conda env create -f environment.yml
+#   conda activate faceswap
+#   # then install the right PyTorch wheel for your machine (see below)
+#
+# PyTorch is intentionally NOT listed; install PyTorch with pip only NOT with conda 
+#
+# ONNX Runtime (used by InsightFace for detection) also has platform variants:
+#   NVIDIA GPU accel: pip install onnxruntime-gpu
+#   Apple silicon:    pip install onnxruntime-silicon   (or plain onnxruntime)
+#   CPU/default:      already covered by requirements.txt (onnxruntime)
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - -r requirements.txt
